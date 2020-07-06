@@ -1,8 +1,8 @@
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/oiiiiii/oiiiiii.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+**点击查看[辩证法文章](README.MD)**
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
 
 ### Markdown
 
