@@ -1,0 +1,548 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title></title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+  .typora-export h1::after, .typora-export h2::after, .typora-export h3::after, .typora-export h4::after, .typora-export h5::after, .typora-export h6::after { content: ""; display: block; height: 100px; margin-bottom: -100px; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        border-top: 1px solid #eee;
+        margin-top: .3em;
+    }
+}
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><p><span>原文地址：全网电子书查找方法大合集，学习书籍，电子书查找一网打尽</span>
+<a href='https://www.52pojie.cn/thread-1370742-1-1.html' target='_blank' class='url'>https://www.52pojie.cn/thread-1370742-1-1.html</a>
+<span>(出处: 吾爱破解论坛)</span></p><h1><a name="1搜索引擎" class="md-header-anchor"></a><span>1.搜索引擎</span></h1><ul><li><span>谷歌</span></li><li><span>百度</span></li></ul><p><span>这种方法是最好用也是最简单的，能解决60%的书籍</span></p><h3><a name="搜索方法如下" class="md-header-anchor"></a><span>搜索方法如下</span></h3><h3><a name="书名关键词后加上格式pdfepubmobiazw3txt）" class="md-header-anchor"></a><span>书名关键词后加上格式（pdf/epub/mobi/azw3/txt）</span></h3><p><span>例如：百年孤独 epub</span></p><p>&nbsp;</p><h3><a name="书名--filetypeinurl格式-" class="md-header-anchor"></a><span>书名 + filetype/inurl:格式 ；</span></h3><p><span>例如：格林童话 filetype:mobi ; 三个火枪手 inurl:pdf。</span></p><h3><a name="书名--提取码" class="md-header-anchor"></a><span>书名 + 提取码</span></h3><p><span>例如：万历十五年 提取码。</span></p><h3><a name="黑名单网站" class="md-header-anchor"></a><span>黑名单网站</span></h3><p><span>但是任何时候在搜索引擎看到以下网站，连那一秒的点击时间都可以省了。这些网站大多钓鱼，无实质内容。</span></p><ol><li><a href='http://www.yiquhai.com/' target='_blank' class='url'>http://www.yiquhai.com/</a><span> 易趣海 纯诈骗网站。搜索一些冷门新书时，这个网站往往会跳出来，套路特别真实，会给你显示一个差不多的文件大小，一个度盘链接。然后让你付费显示链接。付费完毕以后，点进去发现资源已被删除，这些都是套路。</span></li><li><a href='http://booksk.com/' target='_blank' class='url'>http://booksk.com/</a><span> 好多书  这个网站的性质没有易趣海那样恶劣。这个网站的核心思路是：以网上收集来的资料来卖钱。因为网站书库做得还挺大，所以经常会出现在搜索结果里。实事求是的讲，咱这讨论的网站大家都懂的，没谁能占领啥道德制高点；并且一个站长/团队希望借自己搜集资料来牟利，也不是罪大恶极的事，毕竟人的确付出了劳动。我把这个网站放到这纯粹出于一个实际的理由：没有必要。基本上那里有的，我上面提到的免费或者半免费的平台一定会有。</span></li><li><span>好资源 </span><a href='http://www.lingocn.com/' target='_blank' class='url'>http://www.lingocn.com/</a><span>  和好多书一个路数，在搜索引擎里看到请直接过滤。</span></li><li><a href='https://www.daokao.net/' target='_blank' class='url'>https://www.daokao.net/</a><span> 空壳子网站，只会跳转广告。</span></li><li><span>空壳子网站，</span><a href='http://read678.com/' target='_blank' class='url'>http://read678.com/</a><span> 只会跳转广告。 </span></li></ol><h1><a name="网盘搜索" class="md-header-anchor"></a><span>网盘搜索</span></h1><p><span>可以使用网上的网盘搜索，有很多网站可以搜索，不多介绍。</span></p><h6><a name="httpwwwdaysoucom" class="md-header-anchor"></a><a href='http://www.daysou.com/' target='_blank' class='url'>http://www.daysou.com/</a></h6><p><a href='https://www.chaonengsou.com/' target='_blank' class='url'>https://www.chaonengsou.com/</a></p><p><a href='https://mianbaoshu.cc/' target='_blank' class='url'>https://mianbaoshu.cc/</a></p><p><a href='https://www.dalipan.com/' target='_blank' class='url'>https://www.dalipan.com/</a></p><h1><a name="网络小说搜索" class="md-header-anchor"></a><span>网络小说搜索`</span></h1><ul><li><p><span>owllook：</span></p><p><a href='https://www.owlook.com.cn/' target='_blank' class='url'>https://www.owlook.com.cn/</a></p><ul><li><span>小说搜索源码：</span><a href='https://github.com/howie6879/owllook' target='_blank' class='url'>https://github.com/howie6879/owllook</a><span> 有兴趣的可自行搭建</span></li><li><a href='https://owllook2.yueing.org/' target='_blank' class='url'>https://owllook2.yueing.org/</a></li><li><span>lol搜读：</span><a href='https://www.lolsodu.com/' target='_blank' class='url'>https://www.lolsodu.com/</a></li></ul></li><li><p><span>云搜小说：</span><a href='https://www.bookso.vip/' target='_blank' class='url'>https://www.bookso.vip/</a></p></li><li><p><span>快书网：</span><a href='http://bookso.net/' target='_blank' class='url'>http://bookso.net/</a></p></li><li><p><span>流星小说网小说搜索引擎：</span><a href='https://shupu.org/' target='_blank' class='url'>https://shupu.org/</a></p></li><li><p><span>查书网：</span><a href='http://www.chashu.cc/' target='_blank' class='url'>http://www.chashu.cc/</a></p></li><li><p><span>SoDu小说搜索：</span><a href='http://www.sodu12.com/' target='_blank' class='url'>http://www.sodu12.com/</a></p></li><li><p><span>熊猫搜书：</span><a href='https://ebook.huzerui.com/' target='_blank' class='url'>https://ebook.huzerui.com/</a><span> 电子书搜索</span></p></li><li><p><span>知轩藏书：</span><a href='http://www.zxcs.me/'><span>http://www.zxcs.me</span></a><span> 网络小说txt下载</span></p></li><li><p><span>书荒网：</span><a href='http://www.15huang.com/'><span>http://www.15huang.com</span></a><span> 网络小说txt下载</span></p></li><li><p><span>爱下电子书：</span><a href='https://www.aixdzs.com/'><span>https://www.aixdzs.com</span></a><span> 提供 小说 txt、epub 格式下载</span></p></li></ul><h1><a name="网站推荐" class="md-header-anchor"></a><span>网站推荐</span></h1><h2><a name="综合类" class="md-header-anchor"></a><span>综合类</span></h2><ul><li><span>熊猫搜书：</span><a href='https://ebook.huzerui.com'><span>https://ebook.huzerui.com/</span></a></li><li><span>虫部落电子书搜索聚合：</span><a href='https://ebook.chongbuluo.com' target='_blank' class='url'>https://ebook.chongbuluo.com</a></li></ul><h2><a name="单体类" class="md-header-anchor"></a><span>单体类</span></h2><ul><li><a href='https://b-ok.global/' target='_blank' class='url'>https://b-ok.global/</a><span> Z-Library 全球最大的数字图书馆</span></li><li><a href='https://ebook.ipfs-lab.com/' target='_blank' class='url'>https://ebook.ipfs-lab.com/</a></li><li><a href='https://www.yuedu.pro/#/'><span>阅读链</span></a><span> ：</span><a href='https://www.yuedu.pro' target='_blank' class='url'>https://www.yuedu.pro</a><span> </span></li><li><a href='https://www.jiumodiary.com/'><span>鸠摩搜书</span></a><span> </span><a href='https://www.jiumodiary.com/' target='_blank' class='url'>https://www.jiumodiary.com/</a><span>  优点：一个专门针对电子书的聚合搜索引擎。制作者很用心，界面清新可爱，聚合了度盘搜索，几大电子书平台搜索结果（包括周读，和上面提到的skebooks等），甚至还包括了喜马拉雅有声书以及淘宝豆瓣等纸质书平台结果，可以说是相当贴心了。缺点：包含的电子书平台还是较少，新一点的书基本上只有skebooks一个结果，很多时候甚至不如谷歌上书名加mobi好用。</span></li><li><span>ePUBee电子书库 </span><a href='http://cn.epubee.com/books/' target='_blank' class='url'>http://cn.epubee.com/books/</a></li><li><span>偶书 ◤集中发布式网站◢  新发现，强烈推荐！！优点：a，和epubw一样，全站度盘，全站免费。b，和epubw不一样的地方在于，补齐了前者两大短板：PDF扫描书籍与书籍合集。PDF书籍内容还没有深究，但该网站的合集书单做得相当专业，考虑到还全站免费，就更显难能可贵。c，不会像epubw以及一些公众号一样，把网站信息或广告插满书籍的边边角角，除了书名上会带网址，内容是干净的。缺点：风格过于无私，既不挂广告，也不卖代币，也不鼓励用户分享，这样不讲基本法的美好，总让人隐隐不安。希望是我心理阴暗，Longlive obook。</span></li><li><a href='http://kindle.archiew.top/' target='_blank' class='url'>http://kindle.archiew.top/</a><span> </span></li><li><span>采书：</span><a href='http://ebook.name/' target='_blank' class='url'>http://ebook.name/</a><span> 免费电子书搜索引擎</span></li><li><span>精品电子书 </span><a href='http://pan.shudan.vip' target='_blank' class='url'>http://pan.shudan.vip</a><span> 8000本精品电子书下载，每天上午更新10部，建议收藏订阅！ 中文 ★★★★</span></li><li><span>Feedbooks </span><a href='http://www.feedbooks.com/' target='_blank' class='url'>http://www.feedbooks.com/</a><span> 无 英语 ★★★★</span></li><li><span>我与书 </span><a href='http://woyushu.com' target='_blank' class='url'>http://woyushu.com</a><span> 路路通off 中文/英文 ★★★★★ </span></li><li><a href='https://hotbaidu.com/' target='_blank' class='url'>https://hotbaidu.com/</a><span> 正版资源 资源多 支持多家网盘</span></li><li><span>书单搜索 </span><a href='https://www.shudan.vip' target='_blank' class='url'>https://www.shudan.vip</a><span> 网站收录了30多个电子书网站的下载资源，只要搜索一次书名，就可以获得多个网站提供的关于此书的下载地址，让搜书更简单！ 中文 ★★★★</span></li><li><span>书单网 提供多个知名网站的图书检索。</span></li><li><a href='http://www.iread.cf/' target='_blank' class='url'>http://www.iread.cf/</a><span> 正版资源 登陆才能下载，直链保存 体验很好</span></li><li><a href='https://ebook2.lorefree.com/' target='_blank' class='url'>https://ebook2.lorefree.com/</a><span> 去中心化，资源分享搜索平台。</span></li><li><span>三秋书屋 </span><a href='https://www.d4j.cn/' target='_blank' class='url'>https://www.d4j.cn/</a><span> 大多是正版资源 新站 小说/套装</span></li><li><a href='https://ziwu365.com'><span>子午书简</span></a><span> 适合kindle用户，是一个站长为分享kindle电子书专门建立的网站，可在线阅读，也可下载epub或mobi格式，亦可推送至kindle。</span></li><li><a href='https://epubw.com/' target='_blank' class='url'>https://epubw.com/</a><span> 资源全，但很多不是正版 书籍全部带有硬性的网站广告。 百度网盘下载，</span></li><li><span>无产阶级图书馆 我个人完完全全反对该网站的政治立场，不过过滤掉那些耸人听闻的字眼，和部分荼毒人心的左翼宣传资料，该网站收集的许多书籍还是很有价值的，尤其是一些台版和港版书籍的影印版PDF。</span></li><li><span>Epubw ◤集中发布式网站◢ 这个网站的结果基本上可以通过谷歌搜索：书名  epub，就找出来，都不用去主页搜索了。以新书为主。优点：a，全站免费，全站度盘，简单明了。b，资源覆盖面与更新速度尚可，稍逊于一票RF的门徒，同类型网站里应该是排第一了。c，书籍版本应该是经过站务团队筛选并且转制，质量有保障，比如都有目录与封面。d，全格式（其中pdf是硬转的）缺点：a，有全页面覆盖的点击广告。不过貌似点出来一次关掉以后就不会再跳出来了。b，没有扫描版PDF资源，也没有任何合集资源。c，该站书籍不仅在书籍内容里会插入网站地址，还会在书籍的metadata里作者这一栏插入网站信息，这是相当讨厌的行为。我个人习惯每本书下下来都用calibre把meta信息重新编辑一下，还可以插入一些你个人感兴趣的信息（比如豆瓣评分），这样在设备上管理和查看书籍都方便很多。书库体量：★★★☆☆ 书籍质量：★★★★☆ 使用体验：★★★★☆</span></li><li><span>书语者</span></li><li><span>Skebooks</span></li><li><span>Manybooks</span><a href='https://manybooks.net/' target='_blank' class='url'>https://manybooks.net/</a><span> 我们有超过 50000 本电子书等待你来发掘</span></li><li><span>台大图书馆</span><a href='http://ebooks.lib.ntu.edu.tw/Home/ListBooks' target='_blank' class='url'>http://ebooks.lib.ntu.edu.tw/Home/ListBooks</a><span> 台大的藏书，部分书籍可以直接下载，累计藏书约 25 万本</span></li><li><a href='https://www.iamtxt.com/'><span>iamtxt</span></a><span> 免费论坛，上传/签到赚金币 书籍质量看上传者。 ★★★★ </span></li><li><span>辣豆瓣：</span><a href='http://www.ladouban.com' target='_blank' class='url'>http://www.ladouban.com</a><span> 只是这里虽然也免费，但是每天只能下载6本</span></li><li><span>周读</span></li><li><span>丸子书屋</span></li><li><span>kindle8.cc : </span><a href='https://www.kindle8.cc' target='_blank' class='url'>https://www.kindle8.cc</a></li><li><span>Lore Free</span></li><li><span>Iread 这网站之间，往往书库大量重合，并且通过谷歌的书名加扩展名，一般都可以囊括这些网站资源。放在这里，作为参考。这些网站至少可以保障：a，资源真实可信。b，免费用户至少有一天一本的额度。所以在搜索引擎里看到这些网站，大可以一试。</span></li><li><span>完美文库 可在线阅读及下载，可下载txt,mobi,epub格式。</span></li><li><span>COAY 提供ePub、mobi格式电子书下载，支持iBooks，Kindle，Stanza等阅读器。</span></li><li><span>EBOOKEE每周推荐不同书单供下载。</span></li><li><span>掌上书苑下载电子书需要书币，提供epub和mobi格式下载，还可以推送到kindle。</span></li><li><span>书仓网 可在线阅读，提供epub,mobi,pdf等多种格式下载。</span></li><li><span>好读：</span><a href='http://www.haodoo.net/' target='_blank' class='url'>http://www.haodoo.net/</a><span> 繁体字的界面，你应该知道它是哪儿的网站~一个推广中文电子书的公益网站，建站于2001年。</span></li><li><span>威锋电子书分享 威锋论坛多为epub和pdf格式。</span></li><li><span>福尔书库 福尔书库，提供多种格式下载，包括mobi、epub等，可推送到kindle。</span></li><li><span>七彩英语 提供英文原版电子书下载，大多为pdf格式，注意有解压密码。</span></li><li><span>原版图书下载 英文图书杂志，以计算机及经管励志类书籍为主。</span></li><li><span>皮皮书屋 收集的书籍专攻计算机科学以及相关延伸学科。大部分是pdf和chm格式。</span></li><li><span>西东网 学习资料共享，主要提供教育方面的电子书及其他资料，大多为pdf格式。</span></li><li><span>library.nu 著名英文电子书下载网站，书籍大部分是pdf格式。注意部分文件下载后需要解压密码。</span></li><li><span>feedbooks 如果想下载免费图书可点击“Free Public Domain Books”浏览或直接搜索。</span></li><li><span>书语者</span><a href='https://book.shuyuzhe.com/' target='_blank' class='url'>https://book.shuyuzhe.com/</a><span> @ 需要积分，不很推荐</span></li><li><span>医学类电子书</span><a href='http://freebooks4doctors.com/' target='_blank' class='url'>http://freebooks4doctors.com/</a><span> 拥有 369 册医学电子书，人人都需要了解自己的身体</span></li><li><span>苦瓜书盘 </span><a href='https://www.kgbook.com/' target='_blank' class='url'>https://www.kgbook.com/</a><span> 可下载到符合手机尺寸的电子书；</span></li><li><span>云海电子书：</span><a href='http://www.pdfbook.cn/' target='_blank' class='url'>http://www.pdfbook.cn/</a><span> 站内书籍类型丰富、不管是小众、文学，还是励志成功，艺术摄影，计算机网络……你都可以在这里找到、并免费下载它的pdf版本；</span></li><li><span>书格：</span><a href='https://new.shuge.org/' target='_blank' class='url'>https://new.shuge.org/</a><span> 可能是最好用的古籍资料下载网站；</span></li><li><a href='http://freecomputerbooks.com/' target='_blank' class='url'>http://freecomputerbooks.com/</a><span> </span></li><li><a href='https://sci-hub.se' target='_blank' class='url'>https://sci-hub.se</a><span> </span></li><li><a href='http://b-ok.org/' target='_blank' class='url'>http://b-ok.org/</a><span> </span></li><li><span>Open Library </span><a href='https://openlibrary.org/' target='_blank' class='url'>https://openlibrary.org/</a><span> </span></li><li><span>Vol moe（Kindle漫画） VOL.moe </span><a href='https://vol.moe/' target='_blank' class='url'>https://vol.moe/</a><span> </span></li><li><span>知识库：</span><a href='https://book.zhishikoo.com/' target='_blank' class='url'>https://book.zhishikoo.com/</a></li></ul><h2><a name="国学" class="md-header-anchor"></a><span>国学</span></h2><ul><li><span>108国学网</span><a href='http://www.guoxue.com/' target='_blank' class='url'>http://www.guoxue.com/</a></li><li><span>109国学数典</span><a href='http://bbs.gxsd.com.cn/forum.php' target='_blank' class='url'>http://bbs.gxsd.com.cn/forum.php</a></li><li><a href='http://www.guoxue123.com/' target='_blank' class='url'>http://www.guoxue123.com/</a><span> （传统学术）</span></li><li><a href='https://www.gushiwen.org/' target='_blank' class='url'>https://www.gushiwen.org/</a><span> （古诗文）</span></li></ul><h2><a name="计算机" class="md-header-anchor"></a><span>计算机</span></h2><ul><li><span>计算机书控 </span><a href='http://bestcbooks.com/' target='_blank' class='url'>http://bestcbooks.com/</a><span> </span></li><li><span>图灵社区：</span><a href='https://www.ituring.com.cn/book?tab=free' target='_blank' class='url'>https://www.ituring.com.cn/book?tab=free</a><span> 国内最优质的技术书出版社之一，提供免费的技术电子书下载；@ 编程书籍居多，质量上乘，需要注册</span></li><li><span>计算机书籍控：</span><a href='http://bestcbooks.com/' target='_blank' class='url'>http://bestcbooks.com/</a><span> 最好的计算机书籍下载站点；</span></li></ul><h2><a name="其他" class="md-header-anchor"></a><span>其他</span></h2><ul><li><span>Just Free Books 这个站点号称整合了古腾堡 (</span><a href='http://www.gutenberg.org/' target='_blank' class='url'>http://www.gutenberg.org/</a><span>)、维基教科书 (</span><a href='https://www.wikibooks.org/' target='_blank' class='url'>https://www.wikibooks.org/</a><span>)、互联网档案馆 (</span><a href='https://archive.org/' target='_blank' class='url'>https://archive.org/</a><span>)等700余家免费 #电子书网站 的资源，可以检索浏览</span></li><li><span>国外很有名的古藤堡电子书共享计划 英文书籍为主，也有部分中文书籍，繁体。</span></li><li><span>古登堡计划的中文书籍 </span><a href='http://gutenberg.org/' target='_blank' class='url'>http://gutenberg.org/</a><span> </span></li><li><span>爱问共享资料  新浪旗下的在线资料分享站，电子书资源丰富，可以按格式搜索。注册即赠送积分，部分电子书下载需要积分，也有很多电子书是骗下载赚积分的，可能只是几个章节，可以先看评论再选择是否下载。搜索 kindle 电子书的时候可以用“6 寸”、“mobi”这样的关键词。</span></li><li><strong><span>Kindle电子书分享网</span></strong></li><li><span>PDF之家：</span><a href='http://www.pdfzj.com/' target='_blank' class='url'>http://www.pdfzj.com/</a><span> 拥有海量优质资源的PDF站点；</span></li></ul><h2><a name="英文" class="md-header-anchor"></a><span>英文</span></h2><p><span>免费且高质量的英文电子书</span></p><ul><li><span>libgen：</span><a href='http://gen.lib.rus.ec/' target='_blank' class='url'>http://gen.lib.rus.ec/</a><span>  这家应该是俄罗斯的ip，大部分英语书籍都可以在这里搜到，只是是pdf格式。知识共享界的云中仙人。08年由一群俄罗斯科学家创办，至今10年来，书库一直稳步增长，从外文书籍到学术文章，应有尽有。近些年也有很多国内的分享者在上面分享中文资料，但与庞大细密的西文书库相比，当前中文书库体量还是比较捉襟见肘。</span></li><li><span>Bookzz电子书库 另一个英文书籍巨库。英文书籍的书库体量与libgen等量齐观，近些年甚至有赶超的趋势。</span></li><li><a href='http://t.cn/RhlOfVF' target='_blank' class='url'>http://t.cn/RhlOfVF</a></li><li><a href='http://t.cn/aK72BZ' target='_blank' class='url'>http://t.cn/aK72BZ</a></li><li><a href='http://t.cn/RhHpdgy' target='_blank' class='url'>http://t.cn/RhHpdgy</a></li><li><a href='http://t.cn/hejhQ' target='_blank' class='url'>http://t.cn/hejhQ</a></li><li><a href='http://t.cn/RhJlWCO' target='_blank' class='url'>http://t.cn/RhJlWCO</a></li><li><a href='http://t.cn/RhihNen' target='_blank' class='url'>http://t.cn/RhihNen</a></li><li><a href='http://t.cn/EqBqtBE' target='_blank' class='url'>http://t.cn/EqBqtBE</a></li><li><span>booksc.org</span></li><li><span>Electronic library. Download books free. Finding books</span></li><li><a href='http://gen.lib.rus.ec' target='_blank' class='url'>http://gen.lib.rus.ec</a><span> 英文书籍搜索引擎</span></li><li><a href='https://freeditorial.com/' target='_blank' class='url'>https://freeditorial.com/</a><span> </span></li><li></li></ul><h2><a name="外刊" class="md-header-anchor"></a><span>外刊</span></h2><ul><li><span>Magzinelib  ML出现以前，外刊下载是一个八仙过海的局面，途径蛮多，但成败看命，BT断种，国外网盘收费，渣画质坑爹版等等，不一而足。直到这个网站的出现：全站免费，更新即时，全高清PDF。除了一些无伤大雅的页面广告以及不提供mobi版本以外，可以说一站在手，夫复何求了</span></li></ul><h2><a name="论坛" class="md-header-anchor"></a><span>论坛</span></h2><ul><li><a href='http://www.iread.cf/' target='_blank' class='url'>http://www.iread.cf/</a></li><li><span>kindle百度贴吧</span></li><li><span>readfree</span></li></ul><p><span>    </span><a href='https://openresearch-repository.anu.edu.au/' target='_blank' class='url'>https://openresearch-repository.anu.edu.au/</a><span>)</span></p><h1><a name="付费渠道" class="md-header-anchor"></a><span>付费渠道：</span></h1><ul><li><span>全国图书参考资讯联盟  这个生猛。感觉上是读秀的一个接口，书库范围极广（简体书籍大概是全网最广，没有之一），全PDF影印版。但缺点也很显著：使用极其麻烦，并且个人账号有限制，超过两百页的书，基本上两天才能拖下来。这个贴里把使用方法讲的很清楚了，需要的可以去看看。感觉自己在这网站拖书实在太麻烦的，还可以去淘宝让人代下（淘宝搜索：pdf定制，然后偶一个看起来靠谱的）。我的经验来看，价格合理（大都是5元一本左右），并且速度很快，一般两小时内就会把度盘链接发给你。</span><img  src="C:\Users\weifeng\AppData\Roaming\Typora\typora-user-images\image-20210214143946814.png" alt="image-20210214143946814" style="zoom:50%;" /></li><li><span>如果觉得在淘宝找人拖也太麻烦，放一个大杀器在这里：自助式读秀全本下载。这个方法基本上和淘宝上那些PDF代下的后台渠道对等了，非常强大（读秀自己说有430万册的体量，而且还在不断更新），可算是疑难书的终极解决方案。如果上面提到的：epubw，谷歌书名加扩展名，我与书以及云盘精灵都找不到你要的书，估计就这里有希望了。但是：1，这是付费的，费率大概在1元-5元/本之间。2，只有PDF以及pdg（转成pdf看）格式。3，书库巨全，但有大概一年左右的滞后。</span></li></ul><h1><a name="有待整理" class="md-header-anchor"></a><span>有待整理</span></h1><p><span>Library Genesis </span><a href='http://gen.lib.rus.ec/' target='_blank' class='url'>http://gen.lib.rus.ec/</a><span> </span></p><p><span>6周读</span><a href='http://www.ireadweek.com/' target='_blank' class='url'>http://www.ireadweek.com/</a></p><p><span>7epubw</span><a href='https://epubw.com/' target='_blank' class='url'>https://epubw.com/</a></p><p><span>10智奇搜书</span><a href='https://www.zqbook.top/' target='_blank' class='url'>https://www.zqbook.top/</a></p><p><span>14掌上书苑</span><a href='https://www.soepub.com/' target='_blank' class='url'>https://www.soepub.com/</a></p><p><span>16书伴</span><a href='https://bookfere.com/' target='_blank' class='url'>https://bookfere.com/</a></p><p><span>17走读派读书导航zoudupai.com</span></p><p><span>18西林街搜索引擎</span><a href='http://www.xilinjie.com/' target='_blank' class='url'>http://www.xilinjie.com/</a></p><p><span>19虫部落：ebook.chongbuluo.com/</span></p><p><span>20新浪爱问共享资料</span><a href='http://ishare.iask.sina.com.cn/' target='_blank' class='url'>http://ishare.iask.sina.com.cn/</a></p><p><span>21我爱读电子书</span><a href='https://www.woaidu.net/' target='_blank' class='url'>https://www.woaidu.net/</a></p><p><span>22书单网</span><a href='https://www.shudan.vip' target='_blank' class='url'>https://www.shudan.vip</a></p><p><span>23万千合集站</span><a href='http://www.hejizhan.com/html/search' target='_blank' class='url'>http://www.hejizhan.com/html/search</a></p><p><span>24ZLibrary</span><a href='https://b-ok.cc/' target='_blank' class='url'>https://b-ok.cc/</a></p><p><span>25sobooks网</span><a href='https://sobooks.cc/' target='_blank' class='url'>https://sobooks.cc/</a></p><p><span>26Project Gutenberg</span><a href='http://www.gutenberg.org/ebooks/4351' target='_blank' class='url'>http://www.gutenberg.org/ebooks/4351</a></p><p><span>27Owllook</span><a href='https://www.owllook.net/' target='_blank' class='url'>https://www.owllook.net/</a></p><p><span>28集思会</span><a href='http://www.kindlepush.com/main' target='_blank' class='url'>http://www.kindlepush.com/main</a></p><p><span>29蚂蚁搬书</span><a href='http://www.mybanshu.com/' target='_blank' class='url'>http://www.mybanshu.com/</a></p><p><span>30胖次网盘搜索</span><a href='https://www.panc.cc/' target='_blank' class='url'>https://www.panc.cc/</a></p><p><span>31缤闹kindle论坛</span><a href='http://www.binnao.com/' target='_blank' class='url'>http://www.binnao.com/</a></p><p><span>32盘搜搜</span><a href='http://www.pansoso.com/' target='_blank' class='url'>http://www.pansoso.com/</a></p><p><span>33盘搜</span><a href='http://www.pansou.com/' target='_blank' class='url'>http://www.pansou.com/</a></p><p><span>34盘多多</span><a href='http://www.panduoduo.net/' target='_blank' class='url'>http://www.panduoduo.net/</a></p><p><span>36必看网</span><a href='https://www.biikan.com/' target='_blank' class='url'>https://www.biikan.com/</a></p><p><span>37影印古籍资料</span><a href='https://sou-yun.com/eBookIndex.aspx' target='_blank' class='url'>https://sou-yun.com/eBookIndex.aspx</a></p><p><span>38奇书网</span><a href='https://m.qisuu.com/' target='_blank' class='url'>https://m.qisuu.com/</a></p><p><span>39史莱姆搜索</span><a href='http://slimego.cn/' target='_blank' class='url'>http://slimego.cn/</a></p><p><span>41众人搜索网</span><a href='http://www.renrensousuo.com/' target='_blank' class='url'>http://www.renrensousuo.com/</a></p><p><span>42亿年书海</span><a href='http://www.inien.com/w/#/Index' target='_blank' class='url'>http://www.inien.com/w/#/Index</a></p><p><span>43亚马逊免费kindle电子书</span><a href='https://www.amazon.cn/Kindle%E5%85%8D%E8%B4%B9%E7%94%B5%E5%AD%90%E4%B9%A6/b?node=116175071' target='_blank' class='url'>https://www.amazon.cn/Kindle%E5%85%8D%E8%B4%B9%E7%94%B5%E5%AD%90%E4%B9%A6/b?node=116175071</a></p><p><span>44中国国家数字图书馆</span><a href='http://www.nlc.cn/' target='_blank' class='url'>http://www.nlc.cn/</a></p><p><span>45Libgen Online Library</span><a href='https://libgen.pw/search?q=A+brief+history+of+humankind' target='_blank' class='url'>https://libgen.pw/search?q=A+brief+history+of+humankind</a></p><p><span>46kindleshare</span><a href='https://kindleshare.cn/' target='_blank' class='url'>https://kindleshare.cn/</a></p><p><span>47IRead</span><a href='http://www.iread.cf/' target='_blank' class='url'>http://www.iread.cf/</a></p><p><span>48iamtxt</span><a href='http://www.iamtxt.com/' target='_blank' class='url'>http://www.iamtxt.com/</a></p><p><span>49FreeComputerBooks</span><a href='https://www.free-ebooks.net/' target='_blank' class='url'>https://www.free-ebooks.net/</a></p><p><span>50Free-Ebooks</span><a href='https://www.free-ebooks.net/' target='_blank' class='url'>https://www.free-ebooks.net/</a></p><p><span>51BookSC </span><a href='https://booksc.org/' target='_blank' class='url'>https://booksc.org/</a></p><p><span>52Baen Free Library</span><a href='https://www.baen.com/allbooks/category/index/id/2012' target='_blank' class='url'>https://www.baen.com/allbooks/category/index/id/2012</a></p><p><span>53planetebookplanetebook.com/</span></p><p><span>54Magzinelib</span><a href='https://magazinelib.com/' target='_blank' class='url'>https://magazinelib.com/</a></p><p><span>55高清杂志网</span><a href='http://www.gqzzw.com/' target='_blank' class='url'>http://www.gqzzw.com/</a></p><p><span>56静流书站windowsfront.com/</span></p><p><span>57雅书</span><a href='https://yabook.org/' target='_blank' class='url'>https://yabook.org/</a></p><p><span>58阿德莱德大学电子文本收藏中心</span><a href='http://ebooks.adelaide.edu.au/' target='_blank' class='url'>http://ebooks.adelaide.edu.au/</a></p><p><span>59采书</span><a href='http://www.ebook.name/' target='_blank' class='url'>http://www.ebook.name/</a></p><p><span>61超星电子书</span><a href='http://www.chaoxing.com/' target='_blank' class='url'>http://www.chaoxing.com/</a></p><p><span>62读读狗</span><a href='http://www.dududog.com' target='_blank' class='url'>http://www.dududog.com</a></p><p><span>63读书网dushu.com</span></p><p><span>64读书皮</span><a href='http://slfswh.xiangzhan.com/' target='_blank' class='url'>http://slfswh.xiangzhan.com/</a></p><p><span>65论文下载</span><a href='https://www.cn-ki.net/' target='_blank' class='url'>https://www.cn-ki.net/</a></p><p><span>67英文杂志</span><a href='http://www.worldofmagazine.com/' target='_blank' class='url'>http://www.worldofmagazine.com/</a></p><p><span>68英文小说</span><a href='https://ebookbb.com/' target='_blank' class='url'>https://ebookbb.com/</a></p><p><span>69脚本之家</span><a href='https://www.jb51.net/do/book_class.html' target='_blank' class='url'>https://www.jb51.net/do/book_class.html</a></p><p><span>70胖虎书屋</span><a href='http://panghubook.cn' target='_blank' class='url'>http://panghubook.cn</a></p><p><span>71织梦书库</span><a href='https://zhimeng.me' target='_blank' class='url'>https://zhimeng.me</a></p><p><span>72精益</span><a href='http://www.jebook.org/bbs/forum.php' target='_blank' class='url'>http://www.jebook.org/bbs/forum.php</a></p><p><span>73精品电子书</span><a href='http://pan.shudan.vip' target='_blank' class='url'>http://pan.shudan.vip</a></p><p><span>74看帮网</span><a href='https://www.kanbang.cc' target='_blank' class='url'>https://www.kanbang.cc</a></p><p><span>75相识电子书</span><a href='http://www.xiangshi123.com' target='_blank' class='url'>http://www.xiangshi123.com</a></p><p><span>76电子书打包</span><a href='http://mydbfx.com/?cat=78' target='_blank' class='url'>http://mydbfx.com/?cat=78</a></p><p><span>78爱看豆</span><a href='http://www.ikandou.com/about-us' target='_blank' class='url'>http://www.ikandou.com/about-us</a></p><p><span>79爱如生论坛</span><a href='http://forum.er07.com/' target='_blank' class='url'>http://forum.er07.com/</a></p><p><span>80爱分享读书</span><a href='http://www.ishareread.com' target='_blank' class='url'>www.ishareread.com</a></p><p><span>81点点书网</span><a href='http://www.ifshu.com/forum.php?mod=forumdisplay&amp;fid=77' target='_blank' class='url'>http://www.ifshu.com/forum.php?mod=forumdisplay&fid=77</a></p><p><span>82点书网</span><a href='http://dianbook.cc/forum.php?fromuid=3299' target='_blank' class='url'>http://dianbook.cc/forum.php?fromuid=3299</a></p><p><span>83漫画</span><a href='https://volmoe.com/' target='_blank' class='url'>https://volmoe.com/</a></p><p><span>84沃克导航9178.work/</span></p><p><span>85每日书单</span><a href='https://shudan.vip/' target='_blank' class='url'>https://shudan.vip/</a></p><p><span>86殆知阁（古籍）122.200.75.13/</span></p><p><span>87武侠小说网</span><a href='http://qxtxt.com' target='_blank' class='url'>http://qxtxt.com</a></p><p><span>88文叔叔</span><a href='https://www.wenshushu.cn/about' target='_blank' class='url'>https://www.wenshushu.cn/about</a></p><p><span>89搬书匠</span><a href='http://www.banshujiang.cn/' target='_blank' class='url'>http://www.banshujiang.cn/</a></p><p><span>90搜书VIP</span><a href='http://www.soshuvip.com' target='_blank' class='url'>http://www.soshuvip.com</a></p><p><span>91拜读网</span><a href='http://orzbook.com/' target='_blank' class='url'>http://orzbook.com/</a></p><p><span>92我爱书吧</span><a href='http://www.5ibook.net' target='_blank' class='url'>http://www.5ibook.net</a></p><p><span>93快搜</span><a href='http://search.chongbuluo.com/' target='_blank' class='url'>http://search.chongbuluo.com/</a></p><p><span>94必读网beduu.com</span></p><p><span>95布克书屋</span><a href='https://www.bukebook.cn/' target='_blank' class='url'>https://www.bukebook.cn/</a></p><p><span>97小白盘</span><a href='https://www.xiaobaipan.com/' target='_blank' class='url'>https://www.xiaobaipan.com/</a></p><p><span>98小不点搜索</span><a href='https://www.xiaoso.net/' target='_blank' class='url'>https://www.xiaoso.net/</a></p><p><span>99子午书简 </span><a href='https://5kindle.com/' target='_blank' class='url'>https://5kindle.com/</a></p><p><span>100威锋论坛</span><a href='https://bbs.feng.com/forum.php?mod=forumdisplay&amp;fid=224&amp;page=' target='_blank' class='url'>https://bbs.feng.com/forum.php?mod=forumdisplay&fid=224&page=</a></p><p><span>101好资源高质量资源分享平台</span><a href='http://www.lingocn.com/' target='_blank' class='url'>http://www.lingocn.com/</a></p><p><span>102好多书</span><a href='http://booksk.com/' target='_blank' class='url'>http://booksk.com/</a></p><p><span>103奇异书屋</span><a href='https://www.talebook.org/' target='_blank' class='url'>https://www.talebook.org/</a></p><p><span>105图书馆联盟ucdrs.superlib.net/</span></p><p><span>106图书资源 </span><a href='https://bookfere.com/ebook' target='_blank' class='url'>https://bookfere.com/ebook</a></p><p><span>107图书下载网</span><a href='http://m.bookdown.com.cn/' target='_blank' class='url'>http://m.bookdown.com.cn/</a></p><p><span>110嗨读阅读kindleshu.com/</span></p><p><span>111喵咪论文</span><a href='https://lunwen.im/' target='_blank' class='url'>https://lunwen.im/</a></p><p><span>112古籍馆</span><a href='https://www.gujiguan.com/' target='_blank' class='url'>https://www.gujiguan.com/</a></p><p><span>114去转盘网</span><a href='http://www.quzhuanpan.com/' target='_blank' class='url'>http://www.quzhuanpan.com/</a></p><p><span>116北大法宝</span><a href='http://www.pkulaw.cn/' target='_blank' class='url'>http://www.pkulaw.cn/</a></p><p><span>117分享</span><a href='http://www.share2uu.com' target='_blank' class='url'>http://www.share2uu.com</a></p><p><span>118八零小说网</span><a href='http://m.80txt.com/' target='_blank' class='url'>http://m.80txt.com/</a></p><p><span>119伴读</span><a href='https://www.bandubook.com/' target='_blank' class='url'>https://www.bandubook.com/</a></p><p><span>121书舟网</span><a href='http://kindle.archiew.top' target='_blank' class='url'>http://kindle.archiew.top</a></p><p><span>122书海BookOcean</span><a href='https://bookocean.club' target='_blank' class='url'>https://bookocean.club</a></p><p><span>123书堆阅读</span><a href='http://http' target='_blank' class='url'>http://http</a><span>: //werebook. com</span></p><p><span>124中国哲学书电子化计划</span><a href='https://ctext.org/zhs' target='_blank' class='url'>https://ctext.org/zhs</a></p><p><span>125三分钟书屋</span><a href='https://www.sanfenzhong.net' target='_blank' class='url'>https://www.sanfenzhong.net</a></p><p><span>126七彩英语</span><a href='http://www.qcenglish.com/' target='_blank' class='url'>http://www.qcenglish.com/</a></p><p><span>127Wikibooks</span><a href='https://en.wikibooks.org/wiki/Main_Page' target='_blank' class='url'>https://en.wikibooks.org/wiki/Main_Page</a></p><p><span>128WEBOOKS</span><a href='http://www.520mac.com' target='_blank' class='url'>http://www.520mac.com</a></p><p><span>130TheOnlineBooksPage</span><a href='http://digital.library.upenn.edu/books/' target='_blank' class='url'>http://digital.library.upenn.edu/books/</a></p><p><span>131sokindle网</span><a href='https://www.so-kindle.com/book/info/68048' target='_blank' class='url'>https://www.so-kindle.com/book/info/68048</a></p><p><span>133PDFDrive</span><a href='https://www.pdfdrive.com/' target='_blank' class='url'>https://www.pdfdrive.com/</a></p><p><span>134openstax</span><a href='https://openstax.org/' target='_blank' class='url'>https://openstax.org/</a></p><p><span>136obook</span><a href='https://obook.cc/' target='_blank' class='url'>https://obook.cc/</a></p><p><span>137N资源书吧</span><a href='http://www.nziyuan.com/' target='_blank' class='url'>http://www.nziyuan.com/</a></p><p><span>138Mobilism</span><a href='https://forum.mobilism.org/viewforum.php?f=19' target='_blank' class='url'>https://forum.mobilism.org/viewforum.php?f=19</a></p><p><span>139mlook</span><a href='https://www.mlook.mobi/member/login' target='_blank' class='url'>https://www.mlook.mobi/member/login</a></p><p><span>140Libgen</span><a href='http://gen.lib.rus.ec/' target='_blank' class='url'>http://gen.lib.rus.ec/</a></p><p><span>141kindle漫画</span><a href='http://www.kindlecomic.net/' target='_blank' class='url'>http://www.kindlecomic.net/</a></p><p><span>142IT熊猫</span><a href='https://itpanda.net/' target='_blank' class='url'>https://itpanda.net/</a></p><p><span>143itbook</span><a href='https://itbook.download/' target='_blank' class='url'>https://itbook.download/</a></p><p><span>144</span><a href='http://libgen.mehttps://libgen.me/' target='_blank' class='url'>http://libgen.mehttps://libgen.me/</a></p><p><span>145hotbaidu</span><a href='https://hotbaidu.com/' target='_blank' class='url'>https://hotbaidu.com/</a></p><p><span>146HathiTrust Digital Library</span><a href='https://www.hathitrust.org/' target='_blank' class='url'>https://www.hathitrust.org/</a></p><p><span>147Gutenberg</span><a href='https://www.gutenberg.org/' target='_blank' class='url'>https://www.gutenberg.org/</a></p><p><span>148Feedbooks</span><a href='http://www.feedbooks.com/' target='_blank' class='url'>http://www.feedbooks.com/</a></p><p><span>150ebookee</span><a href='https://ebookee.org/' target='_blank' class='url'>https://ebookee.org/</a></p><p><span>151DigiLibraries</span><a href='https://digilibraries.com/' target='_blank' class='url'>https://digilibraries.com/</a></p><p><span>152BookYards</span><a href='https://www.bookyards.com/en/welcome' target='_blank' class='url'>https://www.bookyards.com/en/welcome</a></p><p><span>153bookpartybookparty.cn</span></p><p><span>154BookBookGo</span><a href='http://bookbookgo.cc/' target='_blank' class='url'>http://bookbookgo.cc/</a></p><p><span>155B–OK.xyz</span><a href='http://b-ok.xyz/s/?q=Sapiens%3AA+brief+history+of+humankind&amp;yearFrom=&amp;yearTo=&amp;language=&amp;extension=&amp;t=0' target='_blank' class='url'>http://b-ok.xyz/s/?q=Sapiens%3AA+brief+history+of+humankind&yearFrom=&yearTo=&language=&extension=&t=0</a></p><p><span>156b-ok</span><a href='https://b-ok.cc/' target='_blank' class='url'>https://b-ok.cc/</a></p><p><span>157AvaxHome</span><a href='https://avxhm.se/' target='_blank' class='url'>https://avxhm.se/</a></p><p><span>158AIBOOKS</span><a href='https://www.aibooks.club' target='_blank' class='url'>https://www.aibooks.club</a></p><p><span>15980PDF电子书</span><a href='http://www.80pdf.com/' target='_blank' class='url'>http://www.80pdf.com/</a></p><p><span>160808小说网</span><a href='http://www.pk808.cn'><span>www.pk808.cn</span></a></p><p><span>1、电子书搜索：</span><a href='https://ebook.chongbuluo.com/' target='_blank' class='url'>https://ebook.chongbuluo.com/</a><span> 快搜电子书搜索，有多个资源站点可选择</span></p><p><span>2、OpenStax CNX Library：</span><a href='https://cnx.org/browse' target='_blank' class='url'>https://cnx.org/browse</a><span> 这是一个下载到国外教材的电子书网站；</span></p><p><span>3、万千合集：</span><a href='http://www.hejizhan.com/bbs/?kw=cad+' target='_blank' class='url'>http://www.hejizhan.com/bbs/?kw=cad+</a><span> 最专业的学术资源搜索引擎；</span></p><p><span>4、采 书：</span><a href='http://ebook.name/' target='_blank' class='url'>http://ebook.name/</a><span> 一个免费电子书搜索引擎,为用户提供kindle电子书的搜索服务；</span></p><p><span>4、书享家：</span><a href='http://shuxiangjia.cn/' target='_blank' class='url'>http://shuxiangjia.cn/</a><span> 电子书下载导航网站，提供优质的电子书搜索引擎、kindle下载站、PDF下载站、书单书评的入口导航。网站本身也会推荐一些优质的书单。</span></p><p><span>5、爱问共享资料：</span><a href='http://ishare.iask.sina.com.cn/' target='_blank' class='url'>http://ishare.iask.sina.com.cn/</a><span> 资料搜索引擎。提供PPT、kindle书籍、PDF、Excel、DOC等各种格式的资料下载，内容齐全。</span></p><p><span>提供时间、文件格式、文件页数等维度搜索，快速定位到想要的文档</span></p><p><span>6、Sobooks.：</span><a href='https://sobooks.cc/xiaoshuowenxue' target='_blank' class='url'>https://sobooks.cc/xiaoshuowenxue</a></p><p><span>7、電子爱好馆：</span><a href='http://zlzazhi.com/' target='_blank' class='url'>http://zlzazhi.com/</a></p><p><span>8、田间小站：</span><a href='https://www.tjxz.cc/' target='_blank' class='url'>https://www.tjxz.cc/</a></p><p><span>9、EPUBEE: </span><a href='http://cn.epubee.com/books/' target='_blank' class='url'>http://cn.epubee.com/books/</a><span> 号称最大的电子书网站。</span></p><p><span>10、E书联盟：</span><a href='https://www.book118.com/' target='_blank' class='url'>https://www.book118.com/</a></p><p><span>11、科塔学术：</span><a href='https://site.sciping.com/' target='_blank' class='url'>https://site.sciping.com/</a><span> 最专业、准确、及时、全面的科研与学术资源导航平台</span></p><p><span>12、若蓝格：</span><a href='https://www.ifblue.net/' target='_blank' class='url'>https://www.ifblue.net/</a><span> PDF杂志，各类书刊分享</span></p><p><span>15、万方数据：</span><a href='http://www.wanfangdata.com.cn/index.html' target='_blank' class='url'>http://www.wanfangdata.com.cn/index.html</a><span> 知识服务平台，期刊、报告、论文、专利</span></p><p><span>16、上海图书馆家谱：</span><a href='http://wrd2016.library.sh.cn/channel/stjp/' target='_blank' class='url'>http://wrd2016.library.sh.cn/channel/stjp/</a><span> 上海图书馆藏家谱古文</span></p><p><span>17、抗战文献数据平台：</span><a href='http://www.modernhistory.org.cn/index.htm' target='_blank' class='url'>http://www.modernhistory.org.cn/index.htm</a><span> 抗日战争期间报刊文献资料</span></p><p><span>18、中国历代人物图像数据库：</span><a href='http://diglweb.zjlib.cn:8081/zjtsg/mingren/index.htm' target='_blank' class='url'>http://diglweb.zjlib.cn:8081/zjtsg/mingren/index.htm</a><span> 从夏商周开始历史人物画像资料</span></p><p><span>二 书伴 @ 为静心阅读而生</span></p><p><a href='https://bookfere.com/' target='_blank' class='url'>https://bookfere.com/</a></p><p><span>七 BookSC @ 收录了 339 万本书籍及 5242 万个文献</span></p><p><a href='https://booksc.org' target='_blank' class='url'>https://booksc.org</a></p><p><span>八 豆瓣书 @ 书评是书籍存在过的证明</span></p><p><a href='https://book.douban.com' target='_blank' class='url'>https://book.douban.com</a></p><p><span>九 每周一书 @ 一个 Telegram 频道，荐书 @ 精品古籍，强烈推荐</span></p><p><a href='https://t.me/weekly_books' target='_blank' class='url'>https://t.me/weekly_books</a></p><p><span>十一 LOVE2.io @ 开源技术文档合集，体验极好</span></p><p><a href='https://love2.io' target='_blank' class='url'>https://love2.io</a></p><p><span>十二 Library Genesis @ 很多人都知道的外文资料搜索引擎，质量很高</span></p><p><a href='http://gen.lib.rus.ec' target='_blank' class='url'>http://gen.lib.rus.ec</a></p><p><span>十三 中国哲学书籍电子化计划 @ 诸子百家，尽在此处</span></p><p><a href='https://ctext.org/zh' target='_blank' class='url'>https://ctext.org/zh</a></p><p><span>十四 Gitbook  @ 自己写书，然后开源</span></p><p><a href='https://www.gitbook.com/' target='_blank' class='url'>https://www.gitbook.com/</a></p><p><span>十五 中国国家图书馆 @ 高端大气上档次</span></p><p><a href='http://www.nlc.gov.cn' target='_blank' class='url'>http://www.nlc.gov.cn</a></p><p><span>二十三 Forgotten Books  这个网站是专门制作分发公有领域精排版电子书的——demergency</span></p><p><a href='https://www.forgottenbooks.com' target='_blank' class='url'>https://www.forgottenbooks.com</a></p><p><a href='https://standardebooks.org/' target='_blank' class='url'>https://standardebooks.org/</a></p><p><span>英文电子书</span></p><p><a href='http://gen.lib.rus.ec/' target='_blank' class='url'>http://gen.lib.rus.ec/</a></p><p><a href='http://z-lib.org/' target='_blank' class='url'>http://z-lib.org/</a></p><p><a href='http://www.freebookspot.es/' target='_blank' class='url'>http://www.freebookspot.es/</a></p><p><a href='http://4ebooks.org/' target='_blank' class='url'>http://4ebooks.org/</a><span> </span></p><p><a href='http://www.free-ebooks.net/' target='_blank' class='url'>http://www.free-ebooks.net/</a></p><p><a href='http://manybooks.net/' target='_blank' class='url'>http://manybooks.net/</a></p><p><a href='https://www.getfreeebooks.com/' target='_blank' class='url'>https://www.getfreeebooks.com/</a></p><p><a href='http://www.freetechbooks.com/' target='_blank' class='url'>http://www.freetechbooks.com/</a></p><p><a href='http://ww43.globusz.com/' target='_blank' class='url'>http://ww43.globusz.com/</a></p><p><a href='http://www.onlinecomputerbooks.com/' target='_blank' class='url'>http://www.onlinecomputerbooks.com/</a></p><p><a href='http://www.bookyards.com/en/welcome' target='_blank' class='url'>http://www.bookyards.com/en/welcome</a></p><p><a href='http://digital.library.upenn.edu/books/' target='_blank' class='url'>http://digital.library.upenn.edu/books/</a></p><p><a href='http://www.baen.com/' target='_blank' class='url'>http://www.baen.com/</a></p><p><a href='http://www.ebooklobby.com/' target='_blank' class='url'>http://www.ebooklobby.com/</a></p><p><a href='https://dailylit.com/' target='_blank' class='url'>https://dailylit.com/</a></p><p><a href='https://en.wikibooks.org/wiki/Main_Page' target='_blank' class='url'>https://en.wikibooks.org/wiki/Main_Page</a></p><p><a href='https://downmagaz.com/' target='_blank' class='url'>https://downmagaz.com/</a><span> 外文杂志</span></p><p><a href='http://www.miguyu.com/Ltopic/share' target='_blank' class='url'>http://www.miguyu.com/Ltopic/share</a></p><p><a href='https://www.dsoso.org/books.html' target='_blank' class='url'>https://www.dsoso.org/books.html</a></p><p><a href='http://www.hejizhan.com/html/search' target='_blank' class='url'>http://www.hejizhan.com/html/search</a></p><p><a href='https://shuge.org/' target='_blank' class='url'>https://shuge.org/</a></p><p><a href='http://mylib.nlc.cn/web/guest' target='_blank' class='url'>http://mylib.nlc.cn/web/guest</a></p><p><a href='http://www.ifblue.net/' target='_blank' class='url'>http://www.ifblue.net/</a><span> pdf</span></p><p><a href='http://www.gqzzw.com/' target='_blank' class='url'>http://www.gqzzw.com/</a><span> 高清杂志</span></p><p><a href='http://pdfmagazines.club/' target='_blank' class='url'>http://pdfmagazines.club/</a><span> pdf杂志</span></p><p><a href='https://www.pdfdrive.com/' target='_blank' class='url'>https://www.pdfdrive.com/</a></p><p><a href='https://t.me/beijiangshe' target='_blank' class='url'>https://t.me/beijiangshe</a><span> 北江社: 发布一些神秘的东西 原始史料啥的</span></p><p><a href='http://sci-hub.la/' target='_blank' class='url'>http://sci-hub.la/</a></p><p><a href='http://rutracker.org' target='_blank' class='url'>http://rutracker.org</a></p><p><a href='http://bigtorrent.org/' target='_blank' class='url'>http://bigtorrent.org/</a></p><p><a href='http://boxset.ru/' target='_blank' class='url'>http://boxset.ru/</a></p><h1><a name="tg频道" class="md-header-anchor"></a><span>TG频道</span></h1><ul><li><h5><a name="每周一书" class="md-header-anchor"></a><span>每周一书</span></h5></li></ul><p><span>挖掘优质数字内容，打破信息不对称。本群禁止发送或讨论有关「政治、NSFW、广告、引流、推广、不良链接/文件等」内容。 每周一书 </span><a href='https://t.me/weekly_books' target='_blank' class='url'>https://t.me/weekly_books</a></p><h5><a name="httpstmewhatyouread" class="md-header-anchor"></a><a href='https://t.me/what_youread' target='_blank' class='url'>https://t.me/what_youread</a></h5><ul><li><h5><a name="文杏馆藏书分享）httpstmebooksthatmakeyouthink" class="md-header-anchor"></a><span>文杏馆（藏书分享）：</span><a href='https://t.me/BooksThatMakeYouThink' target='_blank' class='url'>https://t.me/BooksThatMakeYouThink</a></h5></li></ul><p><span>本频道书单来源于网络.FQ用户求书口碑和好友荐书共识，频道将不定期更新符合“普世价值”和“公共知识”主题的内容，感谢大家的支持与关注  备注：书籍版权归原作者所有，频道资源限个人学习交流，请勿用于商业用途 提示：使用置顶链接或搜索“频道手册”可以快速浏览频道现有藏书</span></p><ul><li><h5><a name="好书分享频道" class="md-header-anchor"></a><span>好书分享频道</span></h5></li></ul><p><span>不定期分享我收集的好书好资料。 学习，是一辈子的大事。</span><a href='https://t.me/haoshufenxiang' target='_blank' class='url'>https://t.me/haoshufenxiang</a></p><p><span>參與討論：”好书分享交流组” 。一般由書主羣中可以入去，若不見可試試</span></p><p><a href='https://t.me/joinchat/FYlYLE6jHBfxY4s_i9llow' target='_blank' class='url'>https://t.me/joinchat/FYlYLE6jHBfxY4s_i9llow</a></p><ul><li><h5><a name="電書攤ƹ̵̡ӝ̵̨̄ʒ" class="md-header-anchor"></a><span>電書攤Ƹ̵̡Ӝ̵̨̄Ʒ</span></h5></li></ul><p><span>索引 telegra.ph/TELEBOOKSTALLINDEX-07-31 友好伙伴 @librojamanto 很多新书 @haoshufenxiang 索引标签 #要闻 #困扰已久的问题 所有问题请联系 @hudiebot</span></p><p><span>Description </span><a href='https://t.me/telebookstall' target='_blank' class='url'>https://t.me/telebookstall</a><span> 參與討論：”思維蝴蝶” 。沒有邀請連結，可試試在telegram中搜尋”思維蝴蝶” 看看</span></p><ul><li><h5><a name="books-lover-愛書看書映世界" class="md-header-anchor"></a><span>Books Lover 愛書看書映世界</span></h5></li></ul><p><span>librojamanto = libro jamanto 愛書  人生不免會遇到種種問題、疑惑……能有良朋同探討固然好。不然透過書籍（其他人、先輩的智慧）而獲得啟迪亦是佳事。  此處所介紹者即為生活上遇到種種事、而有所感……從而就所曾涉臘、而網絡上有者予以對應而成……望能助己鞏固所學外、亦可助人令有所啟發……  （書得自網絡而共享、切勿作商業用途） friendship @telebookstall </span><a href='http://philosophers.org/' target='_blank' class='url'>http://philosophers.org/</a><span> </span><a href='http://philosophers.org/ckf' target='_blank' class='url'>http://philosophers.org/ckf</a></p><p><span>Description</span><a href='https://t.me/librojamanto' target='_blank' class='url'>https://t.me/librojamanto</a></p><p><span>參與討論：”Open Society 開放社會”  。一般由書主羣中可以直接入去，亦有邀請連結</span><a href='https://t.me/joinchat/A86TYlTz3B02Y8vtxOvE2w' target='_blank' class='url'>https://t.me/joinchat/A86TYlTz3B02Y8vtxOvE2w</a><span>。若不見可試試在telegram中搜尋&quot;Open Society 開放社會 “</span></p><ul><li><h5><a name="zread-推---什么书值得读-books" class="md-header-anchor"></a><span>zread (推) - 什么书值得读 </span>📚</h5></li></ul><p><span>或许你正在寻觅， 那一隅祥和。 或许你正在等待， 那心之静谧。 群组交流 @zread 阅读伴侣 @zreadBot  推送流来自小君收到的请求， 仅推送某亚原版资源， 资源来自于互联网。 资源维护不易， 你或不必赞赏我们， 但要记得感恩， 回报诞生它的社会。</span></p><p><a href='https://t.me/zreadpush' target='_blank' class='url'>https://t.me/zreadpush</a></p><ul><li><h5><a name="1-zread-读书会-" class="md-header-anchor"></a><span>1/ “zread 读书会” 。</span></h5></li></ul><p><span>欢迎书友们 或许你正在寻觅， 那一隅祥和。 或许你正在等待， 那心之静谧。 阅读伴侣 @zreadBot 推送频道 @zreadpush  畅游书海，以书会友。 内容建议以具体书为基， 分享自己有深度的感想等， 避免发起与读书无关的话题。 设备不仅限于 kindle～ 读书群，  禁开车，禁广告， 禁无理论政， 禁人身攻击。 禁求资源类话题， 还请右拐跳蚤街： </span><a href='https://t.me/joinchat/I5EXs1MZyZF2jsCi1knbLw' target='_blank' class='url'>https://t.me/joinchat/I5EXs1MZyZF2jsCi1knbLw</a><span> 反馈问题请私聊小君。</span></p><p><a href='https://t.me/zread' target='_blank' class='url'>https://t.me/zread</a></p><ul><li><h5><a name="2-zread-跳蚤街" class="md-header-anchor"></a><span>2/ zread 跳蚤街</span></h5></li></ul><p><span>本群专用于群友间互相求书， （尤其是小君未收录的书） 包括但不限于某亚没有的书。  请善用搜索，勿做伸手党。若有伸手党行为（求取较易找到的书籍资源等），禁言一周处理。 回复求书消息时，  禁止携带任何广告类信息，包括不限于群链接，公众号等，请尽量直接提供资源。 读书讨论群  @zread (沒有邀請連結，可試試在telegram中搜尋” zread 跳蚤街 “ )</span></p><ul><li><h5><a name="open-library-70467-subscribers" class="md-header-anchor"></a><span>Open Library 70467 subscribers</span></h5></li></ul><p><span>Best English Books and Magazines for all! Official Username: ➦ @OpenLibrary Channel’s Private Link: </span><a href='https://t.me/joinchat/AAAAAEUbZxqyCKxhZbf-PA' target='_blank' class='url'>https://t.me/joinchat/AAAAAEUbZxqyCKxhZbf-PA</a><span> Advertise with us: @homeofads</span></p><p><a href='https://t.me/English_Books_Magazines' target='_blank' class='url'>https://t.me/English_Books_Magazines</a></p><ul><li><h5><a name="ebooks-only-38368-subscribers" class="md-header-anchor"></a><span>eBooks Only 38368 subscribers</span></h5></li></ul><p><span>All About Books It’s An Exclusive Channel for Books, Magazines,  Audios, Videos of Many Languages collected from Many Groups and  Channels. It’s a Library To Find All Books u Are Searching For @ one  place. Hope The collection will be of great use to you. </span><a href='https://t.me/eBooksOnly' target='_blank' class='url'>https://t.me/eBooksOnly</a></p><ul><li><h5><a name="我的小书屋-httpstmemebookupdate" class="md-header-anchor"></a><span>我的小书屋 </span><a href='https://t.me/mebookupdate' target='_blank' class='url'>https://t.me/mebookupdate</a></h5></li><li><h5><a name="fire-电子书-httpstmedianzhishu" class="md-header-anchor"></a><span>fire: 电子书 </span><a href='https://t.me/dianzhishu' target='_blank' class='url'>https://t.me/dianzhishu</a></h5></li><li><h5><a name="读舍-channel" class="md-header-anchor"></a><span>读舍 Channel</span></h5></li></ul><p><span>享受阅读时光 官方网站： </span><a href='https://shu.fm' target='_blank' class='url'>https://shu.fm</a><span> 搜书工具：「读舍 Bot」 @shufmbot 频道订阅：「读舍 Channel」 @bookcn 群组讨论：「读舍」 @shufm</span></p><p><a href='https://t.me/bookcn' target='_blank' class='url'>https://t.me/bookcn</a></p><ul><li><h5><a name="二-httpstmemglohw" class="md-header-anchor"></a><span>二 </span><a href='https://t.me/mglohw' target='_blank' class='url'>https://t.me/mglohw</a></h5></li><li><h5><a name="好书集-httpstmehaoshuji" class="md-header-anchor"></a><span>好书集 </span><a href='https://t.me/haoshuji' target='_blank' class='url'>https://t.me/haoshuji</a></h5></li><li><h5><a name="ebookz-collections-httpstmeebookzcollection" class="md-header-anchor"></a><span>Ebookz Collections </span><a href='https://t.me/EbookzCollection' target='_blank' class='url'>https://t.me/EbookzCollection</a></h5></li><li><h5><a name="书籍共享计划-httpstmebooksharingplan" class="md-header-anchor"></a><span>书籍共享计划 </span><a href='https://t.me/booksharingplan' target='_blank' class='url'>https://t.me/booksharingplan</a></h5></li></ul><h5><a name="20-theeconomist--12764-subscribers" class="md-header-anchor"></a><span>#20/ the_economist  12764 subscribers</span></h5><p><span>To share the best magazines and discuss about economics, politics and business! Spam messages not tolerated. @viksinwar </span><a href='https://www.instagram.com/viksinwar/' target='_blank' class='url'>https://www.instagram.com/viksinwar/</a><span> @HBR_business @StockReport09</span></p><ul><li><h5><a name="23-amazon-kindle-and-ebooks-6642-subscribers" class="md-header-anchor"></a><span>#23/ Amazon kindle and ebooks 6642 subscribers</span></h5></li></ul><p><span>Here you will get all amazon books and ebooks in pdf format which will be totally free of cost .</span></p><p><a href='https://t.me/amazonebook' target='_blank' class='url'>https://t.me/amazonebook</a></p><ul><li><h5><a name="24-中国纪录片-1460-subscribers" class="md-header-anchor"></a><span>#24/ 中国纪录片 1460 subscribers</span></h5></li></ul><p><span>中国纪录片分享频道，欢迎加群交流</span><a href='https://t.me/joinchat/GVhQsVGqsYp54VOeQHzTAA' target='_blank' class='url'>https://t.me/joinchat/GVhQsVGqsYp54VOeQHzTAA</a></p><ul><li><h5><a name="25-whats-news-5618-subscribers" class="md-header-anchor"></a><span>#25/ What’s News 5618 subscribers</span></h5></li></ul><p><span>Newspapers and magazines from around the globe vk.com/wsnws All questions to/По всем вопросам: @justjohnsmith</span></p><p><a href='https://t.me/whatsnws' target='_blank' class='url'>https://t.me/whatsnws</a></p><ul><li><h5><a name="26-读舍-channel" class="md-header-anchor"></a><span>#26/ 读舍 Channel</span></h5></li></ul><p><span>享受阅读时光 官方网站： </span><a href='https://shu.fm' target='_blank' class='url'>https://shu.fm</a><span> 搜书工具：「读舍 Bot」 @shufmbot 频道订阅：「读舍 Channel」 @bookcn 群组讨论：「读舍」 @shufm</span></p><p><a href='https://t.me/bookcn' target='_blank' class='url'>https://t.me/bookcn</a></p><ul><li><h5><a name="28-古物阁" class="md-header-anchor"></a><span>#28/ 古物阁</span></h5></li></ul><p><span>兴趣类。 Tag：传统文化、民俗杂侃、灵异鬼怪、奇闻异事、气功武术玄学巫术风水法术预测符咒术数神秘学灵修冥想 推荐频道＆群组：  @TaoistPalace @YiXueJiaoLiu @nihilityworld @Yiology @NAcomm @martialArtX @ziweix</span></p><p><a href='https://t.me/ziweix' target='_blank' class='url'>https://t.me/ziweix</a></p><ul><li><h5><a name="31-magazines-newspapers-edicola-riviste-revista-diario-journaux-quotidiani-جرائد-ومجلات-pdf-download" class="md-header-anchor"></a><span>#31/ Magazines NewsPapers Edicola Riviste Revista Diario Journaux Quotidiani جرائد ومجلات PDF Download</span></h5></li></ul><p><span>#</span><span>us #uk #canada #australia #italy #spain #germany #brasil #news  #newspaper #magazine #journal #english #spanish #chinese #asia #africa  #edicola #photo</span></p><p><a href='https://t.me/WorldAndNews' target='_blank' class='url'>https://t.me/WorldAndNews</a></p><ul><li><h5><a name="32-booksthief-61128-subscribers" class="md-header-anchor"></a><span>#32/ @BooksThief 61128 subscribers</span></h5></li></ul><p><span>Hand picked books! Channel Terms: t.me/BooksThief/5877 #DMCA  Disclosure: t.me/tgweb/40 Donations: t.me/BooksThief/5876 Check: #guide  Requests</span>👇<span> @BooksThiefBot Partner: • @BooksBag • @BooksLog  </span>📲<span> Contact us - @BooksThiefBot </span>🌐<span> @tgWeb </span></p><p><a href='https://t.me/BooksThief' target='_blank' class='url'>https://t.me/BooksThief</a></p><ul><li><h5><a name="33-booksbag-26059-subscribers" class="md-header-anchor"></a><span>#33/ @BooksBag 26059 subscribers</span></h5></li></ul><p><span>Educational, self-help &amp; Development Books Only. #DMCA  Disclosure: t.me/tgweb/40 Support us (Donations): t.me/BooksBag/1383  Requests</span>👇<span> @BooksThiefBot Partner: • @BooksThief • @BooksLog  </span>📲<span> Contact us - @BooksThiefBot </span>🌐<span> @tgWeb  Network</span></p><p><a href='https://t.me/BooksBag' target='_blank' class='url'>https://t.me/BooksBag</a></p></div>
+</body>
+</html>
